@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	
+	<style>
+
+body{
+    height: 100vh;
+    left:0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: solid color(srgb red green blue);
+    background-size: 1800% 1800%;
+
+-webkit-animation: rainbow 18s ease infinite;
+-z-animation: rainbow 5s ease infinite;
+-o-animation: rainbow 5s ease infinite;
+  animation: rainbow 5s ease infinite;}
+
+@-webkit-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-o-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes rainbow { 
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+
+.container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding: 20px 25px;
+    width: 300px;
+
+    background-color: rgba(0,0,0,.7);
+    box-shadow: 0 0 10px rgba(255,255,255,.3);
+}
+.container h1{
+    text-align: center;
+    color: #fafafa;
+	font-size: 30px ;
+    margin-bottom: 20px;
+	font-family: "monotype corsiva";
+    border-bottom: 1px solid #2979ff;
+}
+.container label{
+    text-align: left;
+	font-size: 20px;
+    color: white;
+	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+.container form input{
+    width: calc(100% - 20px);
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    border:#0a5a0e;
+    background-color: solid;
+    border-bottom: 2px solid #088d30;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+}
+.container form button{
+    width: 100%;
+    padding: 5px 0;
+    border: none;
+    background-color:#2979ff;
+	border-radius: 12px;
+    font-size: 18px;
+    color: #020202;
+}
+.container form button:hover { 
+	background-image: linear-gradient(to right, #6253e1, #852D91, #5855e7, #F24645);
+    box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+}
+.msg {
+		 /* Font options */
+		font-family: 'Pacifico', cursive;
+		color : white;
+  		text-shadow: 2px 2px 4px #0a5a0e;
+  		font-size:18px;
+  
+   /* Chrome, Safari, Opera */
+  		animation: rainbow 5s infinite; 
+}
+
+</style>
+		<title>Test</title>
+	</head>
+	<body>
+	<div class="container">
+	<h1>Test</h1><br>
+	<form action="{{ url_for('login') }}" method="post">
+        {% if msg is defined and msg %}
+				<div class="alert alert-warning">{{ msg }}</div>
+			{% endif %}<br>
+	<label>Username</label><br>
+	<input id="username" name="user_login" type="text" placeholder="username"><br>
+	<label>Password</label><br>
+	<input input id="password" name="password" type="password" placeholder="password"><br><br>
+	<button type="submit">LOGIN</button>
+	</form>
+	</div>
+	</body>
+</html>

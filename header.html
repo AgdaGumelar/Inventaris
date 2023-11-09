@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Inventaris</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>    
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'plugins/fontawesome-free/css/all.min.css' ) }}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' ) }}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' ) }}">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'plugins/jqvmap/jqvmap.min.css' ) }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="static/dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' ) }}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'plugins/daterangepicker/daterangepicker.css' ) }}">
+  <!-- summernote -->
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'plugins/summernote/summernote-bs4.css' ) }}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index" class="brand-link">
+      <img src="#logo" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">Inventaris</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+          <a>{{session.nama}}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview {% if menu == 'datauser' %} menu-open {% endif %}">
+                <a href="datauser" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Data User
+                  </p>
+                </a>
+          </li>
+          <li class="nav-item has-treeview {% if menu == 'inventaris' %} menu-open {% endif %}">
+                <a href="inventaris" class="nav-link">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>
+                    Inventaris
+                  </p>
+                </a>
+          </li>
+          <li class="nav-item has-treeview {% if menu == 'databarang' %} menu-open {% endif %}">
+            <a href="databarang" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Data Barang
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview {% if menu == 'datapasien' %} menu-open {% endif %}">
+            <a href="datapasien" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Data Pasien
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview {% if menu == 'Kategori' %} menu-open {% endif %}">
+            <a href="kategori" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Kategori
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview {% if menu == 'supplier' %} menu-open {% endif %}">
+            <a href="supplier" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Supplier
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview {% if menu == 'merk' %} menu-open {% endif %}">
+            <a href="merk" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Merk
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview {% if menu == 'satuan' %} menu-open {% endif %}">
+            <a href="satuan" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Satuan
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+              <a href="transaksi" class="nav-link">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>
+                  Pemeriksaan
+                </p>
+              </a>
+          </li>
+          <li class="nav-item has-treeview {% if menu == 'laporan' %} menu-open {% endif %}" >
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Laporan
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/laporan1" class="nav-link {% if submenu == 'laporan1' %} active {% endif %}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Pasien</p>
+                </a>
+              </li>
+            </ul>
+		  </li>
+        <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  </div>
+  </body>
+</html>

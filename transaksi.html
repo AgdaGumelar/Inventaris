@@ -1,0 +1,101 @@
+{% include 'header.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">Transaksi</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- general form elements -->
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h3 class="card-title">Periksa</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form action="{{url_for('tambahtransaksi')}}" method="POST">
+                  <div class="card-body">
+
+                    <div class="form-group">
+                      <label>NIK</label>
+                      <input type="text" class="form-control" name="nik" placeholder="Masukan NIK">
+                    </div>
+
+                    <div class="form-group">
+                      <label>Nama Pasien</label>
+                      <input type="text" class="form-control" name="nama_pasien" placeholder="Masukan Nama">
+                    </div>
+                    
+                    <div class="form-group">
+                     <label>Jenis Kelamin:</label>
+                     <select name="jeniskelamin">
+                     <option value=""></option>
+                     <option value="1">Laki-laki</option>
+                     <option value="2">Perempuan</option>
+                     </select>
+                   </div>
+
+                   <div class="form-group">
+                     <label>Gejala</label>
+                     <input type="text" class="form-control" name="diagnosa">
+                   </div>
+
+                   <div class="form-group">
+                     <label>Kategori</label>
+                     <select name="kategori">
+                        <option value=""></option>
+                        <option value="1">UMUM</option>
+                        <option value="2">BPJS</option>
+                        </select>
+                   </div>
+
+                   <div class="form-group">
+                     <label>No BPJS</label>
+                     <input type="text" class="form-control" name="nobpjs" placeholder="Jika UMUM/Tidak Ada Boleh Kosong">
+                   </div>
+
+                   <div class="form-group">
+                     <label>Nama Dokter</label>
+                     <input type="text" class="form-control" name="namadokter" value="{{ session.nama }}" readonly>
+                   </div>
+
+                   <div class="form-group">
+                     <label>Tanggal Periksa</label>
+                     <input type="date" class="form-control datepicker-input" name="tglperiksa" >
+                   </div>
+
+                   <div class="form-group">
+                     <label>Obat</label>
+                     <input type="text" class="form-control" name="obat" placeholder="Masukan Nama Obat">
+                   </div>
+
+                   <div class="form-group">
+                     <label>No HP</label>
+                     <input type="text" class="form-control" name="nohp" placeholder="Masukan no hp">
+                   </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}

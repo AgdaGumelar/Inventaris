@@ -1,0 +1,359 @@
+{% include 'header.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1> Data Pasien</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li><button type="button"  class="btn btn-success float-right"
+                data-toggle="modal" data-target="#tambahpasien">Tambah</button></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-16">
+            <div class="card">
+              <div class="card-header">
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="pasien" class="table table-bordered">
+                  <thead>                  
+                    <tr>
+                      <th>Nama Pasien</th>
+                      <th>NIK</th>
+                      <th>Jenis Kelamin</th>
+                      <th>Alamat</th>
+                      <th>RT</th>
+                      <th>RW</th>
+					  <th>Kecamatan</th>
+					  <th>Kelurahan</th>
+                      <th>Tanggal Lahir</th>
+                      <th>Tanggal Daftar</th>
+					  <th width="10%" method="POST">Aksi</th>
+                      <th width="10%" method="POST">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for pasien in data %}
+                    <tr>
+                      <td>{{ pasien.1 }}</td>
+                      <td>{{ pasien.0 }}</td>
+                      <td>{{ pasien.2 }}</td>
+                      <td>{{ pasien.3 }}</td>
+                      <td>{{ pasien.4 }}</td>
+                      <td>{{ pasien.5 }}</td>
+                      <td>{{ pasien.6 }}</td>
+                      <td>{{ pasien.7 }}</td>
+					  <td>{{ pasien.8 }}</td>
+					  <td>{{ pasien.9 }}</td>
+                      <td><a href="#!" class="btn btn-warning" role="button" data-toggle="modal" data-target="#editpasien{{ pasien.0 }}">Ubah</a></td>
+                      <td><a href="/hapuspasien/{{ pasien.0 }}" class="btn btn-danger" onclick=" return confirm('anda yakin akan menghapus data ini')">Hapus</a></td>
+                    </tr>
+                    <div id="editpasien{{ pasien.0 }}" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                    
+                    
+                         <div class="modal-content">
+                    
+                    
+                            <div class="modal-header">
+                    
+                    
+                               <h4 class="modal-title">Update Pasien</h4>
+                    
+                    
+                            </div>
+                    
+                    
+                            <div class="modal-body">
+                    
+                    
+                               <form action="{{url_for('updatepasien')}}" method="POST">
+                    
+                    
+                                  <div class="form-group">
+                    
+                    
+                                     <label>NIK:</label>
+                                      <input type="text"  class="form-control" name="nik" value="{{ pasien.0 }}" readonly>
+                    
+                    
+                                  </div>
+
+                                  <div class="form-group">
+                    
+                    
+                                    <label>Nama Pasien:</label>
+                                    <input type="text" class="form-control" name="nama" value="{{ pasien.1 }}" readonly>
+                   
+                   
+                                 </div>
+
+                                 <div class="form-group">
+                    
+                    
+                                  <label>Jenis Kelamin:</label>
+                                  <input type="text" class="form-control" name="jeniskelamin" value="{{ pasien.2 }}" readonly>
+                 
+                 
+                               </div>
+
+                               <div class="form-group">
+                    
+                    
+                                <label>Alamat:</label>
+                                <input type="text" class="form-control" name="alamat" value="{{ pasien.3 }}" readonly>
+               
+                             </div>
+                    
+                                  <div class="form-group">
+                    
+                    
+                                     <label>RT:</label>
+                    
+                                     <input type="number" class="form-control" name="rt" value="{{ pasien.4 }}">
+                    
+                    
+                                  </div>
+                    
+                    
+                                  <div class="form-group">
+                    
+                    
+                                     <label>RW:</label>
+                    
+                                     <input type="number" class="form-control" name="rw" value="{{ pasien.5 }}">
+                    
+                    
+                                  </div>
+								  
+								  <div class="form-group">
+                    
+                    
+                                     <label>Kecamatan:</label>
+                    
+                                     <input type="text" class="form-control" name="kecamatan" value="{{ pasien.6 }}">
+                    
+                    
+                                  </div>
+								  
+								  <div class="form-group">
+                    
+                    
+                                     <label>Kelurahan:</label>
+                    
+                                     <input type="text" class="form-control" name="kelurahan" value="{{ pasien.7 }}">
+                    
+                    
+                                  </div>
+
+                                 <div class="form-group">
+                    
+                    
+                                  <label>Tanggal Lahir:</label>
+                                  <input type="text" class="form-control" name="tgllahir" value="{{ pasien.8 }}" readonly>
+                 
+                 
+                               </div>
+
+                               <div class="form-group">
+                    
+                    
+                                <label>Tanggal Daftar:</label>
+                                <input type="text" class="form-control" name="tglmasuk" value="{{ pasien.9 }}" readonly>
+               
+               
+                             </div>
+                    
+                    
+                                  <div class="form-group">
+                    
+                    
+                                     <button class="btn btn-primary" type="submit">Update</button>
+                    
+                    
+                                  </div>
+                    
+                    
+                               </form>
+                    
+                    
+                            </div>
+                    
+                    
+                            <div class="modal-footer">
+                    
+                    
+                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    
+                    
+                            </div>
+                    
+                    
+                         </div>
+                    
+                    
+                      </div>
+                    
+                   </div> 
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
+  {% include 'footer.html' %}
+  
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#pasien').DataTable();
+        } );
+    </script>
+
+  <!-- /tambah pasien-->
+  <div id="tambahpasien" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+       <div class="modal-content">
+          <div class="modal-header">
+  
+             <h4 class="modal-title">Daftar Pasien</h4>
+          </div>
+          <div class="modal-body">
+  
+             <form action="{{url_for('simpanpasien')}}" method="POST">
+  
+  
+                <div class="form-group">
+  
+                   <label>Nama Pasien:</label>
+                   <input type="text" class="form-control" name="nama" required="1">
+  
+  
+                </div>
+                
+                <div class="form-group">
+  
+                  <label>NIK:</label>
+                  <input type="text" class="form-control" name="nik" required="1">
+ 
+ 
+               </div>
+  
+  
+                 <div class="form-group">
+  
+  
+                   <label>Jenis Kelamin:</label>
+                   <select name="jeniskelamin">
+                    <option value=""></option>
+                    <option value="1">Laki-laki</option>
+                    <option value="2">Perempuan</option>
+                    </select>
+                </div>
+  
+  
+                 <div class="form-group">
+  
+                   <label>Alamat:</label>
+                   <input type="text" class="form-control" name="alamat" required="1">
+  
+                </div>
+
+                <div class="form-group">
+  
+                  <label>RT:</label>
+                  <input type="number" class="form-control" name="rt" required="1">
+ 
+               </div>
+
+               <div class="form-group">
+  
+                <label>RW:</label>
+                <input type="number" class="form-control" name="rw" required="1">
+
+             </div>
+				
+				<div class="form-group">
+  
+                <label>Kecamatan:</label>
+                <input type="text" class="form-control" name="kecamatan" required="1">
+
+             </div>
+			 
+			 <div class="form-group">
+  
+                <label>Kelurahan:</label>
+                <input type="text" class="form-control" name="kelurahan" required="1">
+
+             </div>
+			 
+             <div class="form-group">
+  
+              <label>Tanggal Lahir:</label>
+              <input type="date" class="form-control" name="tgllahir" required="1">
+
+           </div>
+
+           <div class="form-group">
+  
+            <label>Tanggal Daftar:</label>
+            <input type="date" class="form-control" name="tglmasuk" required="1">
+
+         </div>
+  
+                <div class="form-group">
+  
+  
+                   <button class="btn btn-primary" type="submit">Daftar Pasien</button>
+  
+  
+                </div>
+  
+  
+             </form>
+  
+  
+          </div>
+  
+  
+          <div class="modal-footer">
+  
+  
+             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  
+  
+          </div>
+  
+  
+       </div>
+
+
+
+
+  <!-- /edit obat analgetik-->
+
+      

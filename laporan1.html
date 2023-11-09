@@ -1,0 +1,215 @@
+{% include 'header.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Data Laporan Pasien</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item active"><a href="/downloadexcel" class="btn btn-info" target="_blank"> DOWNLOAD EXCEL</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <!--car-header-->
+        <div class="card-body">
+          <table id="pasien" class="table table-bordered">
+            <thead>                  
+                <tr>
+                    <th style="width: 10px">Id</th>
+					<th>NIK</th>
+                    <th>Nama Pasien</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Gejala</th>
+                    <th>Kategori</th>
+                    <th>Nama Dokter</th>
+                    <th>Tanggal Periksa</th>
+                    <th>Detail Pasien</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for transaksi in data %}
+                  <tr>
+                    <td>{{ transaksi.0 }} </td>
+                    <td>{{ transaksi.1 }}</td>
+                    <td>{{ transaksi.2 }}</td>
+                    <td>{{ transaksi.3 }}</td>
+                    <td>{{ transaksi.4 }}</td>
+                    <td>{{ transaksi.5 }}</td>
+                    <td>{{ transaksi.7 }}</td>
+                    <td>{{ transaksi.8 }}</td>
+                    <td><a href="" data-toggle="modal" class="btn btn-info" data-target="#transaksi{{ transaksi.0 }}">Detail</a></td>
+                </tr>
+                <div id="transaksi{{ transaksi.0 }}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                  
+                  
+                       <div class="modal-content">
+                  
+                  
+                          <div class="modal-header">
+                  
+                  
+                             <h4 class="modal-title">Detail Pasien</h4>
+                  
+                  
+                          </div>
+                  
+                  
+                          <div class="modal-body">
+                  
+                  
+                             <form action="{{url_for('detailtransaksi')}}" method="POST">
+                  
+                  
+                                <div class="form-group">
+                  
+                  
+                                   <label>NIK :</label>
+                                    <input type="hidden"  name="id_pasien" value="{{ transaksi.0 }}">
+                  
+                                   <input type="text" class="form-control" name="nik" value="{{ transaksi.1 }}" readonly>
+                  
+                  
+                                </div>
+								
+								<div class="form-group">
+                  
+                  
+                                  <label>Nama Pasien :</label>
+                                  <input type="text" class="form-control" name="nik" value="{{ transaksi.2 }}" readonly>
+                 
+                 
+                               </div>
+
+                                <div class="form-group">
+                  
+                  
+                                  <label>Jenis Kelamin :</label>
+                                  <input type="text" class="form-control" name="nik" value="{{ transaksi.3 }}" readonly>
+                 
+                 
+                               </div>
+
+                               <div class="form-group">
+                  
+                  
+                                <label>Diagnosa :</label>
+                                <input type="text" class="form-control" name="jeniskelamin" value="{{ transaksi.4 }}" readonly>
+               
+               
+                             </div>
+
+                             <div class="form-group">
+                  
+                  
+                              <label>Kategori :</label>
+                              <input type="text" class="form-control" name="alamat" value="{{ transaksi.5 }}" readonly>
+             
+                           </div>
+                  
+                                <div class="form-group">
+                  
+                  
+                                   <label>No BPJS :</label>
+                  
+                                   <input type="text" class="form-control" name="rt" value="{{ transaksi.6 }}" readonly>
+                  
+                  
+                                </div>
+                  
+                  
+                                <div class="form-group">
+                  
+                  
+                                   <label>Nama Dokter :</label>
+                  
+                                   <input type="text" class="form-control" name="rw" value="{{ transaksi.7 }}" readonly>
+                  
+                  
+                                </div>
+
+                               <div class="form-group">
+                  
+                  
+                                <label>Tanggal Periksa :</label>
+                                <input type="date" class="form-control" name="tgllahir" value="{{ transaksi.8 }}" readonly>
+               
+               
+                             </div>
+
+                             <div class="form-group">
+                  
+                  
+                              <label>Obat :</label>
+                              <input type="text" class="form-control" name="tglmasuk" value="{{ transaksi.9 }}" readonly>
+             
+             
+                           </div>
+
+                           <div class="form-group">
+                  
+                  
+                            <label>No HP :</label>
+                            <input type="text" class="form-control" name="tglmasuk" value="{{ transaksi.10 }}" readonly>
+           
+           
+                         </div>
+                  
+                  
+                             </form>
+                  
+                  
+                          </div>
+                  
+                  
+                          <div class="modal-footer">
+                  
+                  
+                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  
+                  
+                          </div>
+                  
+                  
+                       </div>
+                  
+                  
+                    </div>
+                  
+                 </div> 
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#pasien').DataTable();
+        } );
+    </script>

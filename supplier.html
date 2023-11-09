@@ -1,0 +1,249 @@
+{% include 'header.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Supplier</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li><button type="button"  class="btn btn-success float-right"
+                data-toggle="modal" data-target="#tambahsupplier">Tambah</button></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Supplier</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="supplier" class="table table-bordered">
+                  <thead>                  
+                    <tr>
+                      <th style="width: 10px">Id</th>
+                      <th>Nama Supplier</th>
+                      <th>Alamat Supplier</th>
+                      <th>Detail</th>
+                      <th>Status</th>
+                  </thead>
+                  <tbody>
+                    {% for supplier in data %}
+                    <tr>
+                      <td>{{ supplier.0}} </td>
+                      <td>{{ supplier.1 }}</td>
+                      <td>{{ supplier.2 }}</td>
+                      <td>{{ supplier.3 }}</td>
+                      <td><a href="#!" class="btn btn-warning" role="button" data-toggle="modal" data-target="#editsupplier{{ supplier.0 }}">Ubah</a></td>
+                      <td><a href="/hapussupplier/{{ supplier.0 }}" class="btn btn-danger" onclick=" return confirm('anda yakin akan menghapus data ini')">Hapus</a></td>
+                    </tr>
+                    <div id="editsupplier{{ analgetik.0 }}" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                    
+                    
+                         <div class="modal-content">
+                    
+                    
+                            <div class="modal-header">
+                    
+                    
+                               <h4 class="modal-title">Update Supplier</h4>
+                    
+                    
+                            </div>
+                    
+                    
+                            <div class="modal-body">
+                    
+                    
+                               <form action="{{url_for('updatesupplier')}}" method="POST">
+                    
+                    
+                                  <div class="form-group">
+                    
+                    
+                                     <label>Nama supplier:</label>
+                                      <input type="hidden"  name="id_supplier" value="{{ supplier.0 }}">
+                    
+                                     <input type="text" class="form-control" name="nama_supplier" value="{{ supplier.1 }}">
+                    
+                    
+                                  </div>
+                    
+                                  <div class="form-group">
+                    
+                    
+                                     <label>Alamat Supplier:</label>
+                    
+                                     <input type="text" class="form-control" name="jenis" value="{{ supplier.2 }}">
+                    
+                    
+                                  </div>
+                    
+                    
+                                  <div class="form-group">
+                    
+                    
+                                     <label>Detail Supplier:</label>
+                    
+                                     <input type="text" class="form-control" name="harga" value="{{ supplier.3 }}">
+                    
+                    
+                                  </div>
+
+                                  <div class="form-group">
+                    
+                    
+                                    <label>Status:</label>
+                   
+                                    <input type="number" class="form-control" name="status" value="{{ supplier.4 }}">
+                   
+                   
+                                 </div>
+                    
+                    
+                                  <div class="form-group">
+                    
+                    
+                                     <button class="btn btn-primary" type="submit">Update</button>
+                    
+                    
+                                  </div>
+                    
+                    
+                               </form>
+                    
+                    
+                            </div>
+                    
+                    
+                            <div class="modal-footer">
+                    
+                    
+                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    
+                    
+                            </div>
+                    
+                    
+                         </div>
+                    
+                    
+                      </div>
+                    
+                   </div> 
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
+  {% include 'footer.html' %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#supplier').DataTable();
+        } );
+    </script>
+
+  <!-- /tambah obat analgetik-->
+  <div id="tambahsupplier" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+       <div class="modal-content">
+          <div class="modal-header">
+  
+             <h4 class="modal-title">Tambah Supplier</h4>
+          </div>
+          <div class="modal-body">
+  
+             <form action="{{url_for('simpansupplier')}}" method="POST">
+  
+  
+                <div class="form-group">
+  
+                   <label>Nama Supplier:</label>
+                   <input type="text" class="form-control" name="nama_supplier" required="1">
+  
+                </div>
+                
+                <div class="form-group">
+  
+                  <label>Alamat Supplier:</label>
+                   <input type="text" class="form-control" name="alamat_supplier" required="1">
+  
+               </div>
+  
+  
+                 <div class="form-group">
+  
+  
+                   <label>Detail:</label>
+                   <input type="text" class="form-control" name="detail_suppplier" required="1">
+  
+  
+                </div>
+  
+  
+                 <div class="form-group">
+  
+  
+                   <label>Status:</label>
+                   <input type="text" class="form-control" name="status" required="1">
+  
+  
+                </div>
+  
+  
+  
+                <div class="form-group">
+  
+  
+                   <button class="btn btn-primary" type="submit">Tambah Supplier</button>
+  
+  
+                </div>
+  
+  
+             </form>
+  
+  
+          </div>
+  
+  
+          <div class="modal-footer">
+  
+  
+             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  
+  
+          </div>
+  
+  
+       </div>
+
+
+  <!-- /edit obat analgetik-->
+
+      
